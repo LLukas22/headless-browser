@@ -2,11 +2,11 @@ use std::sync::atomic::{AtomicBool, AtomicU64};
 
 /// The performance arg count.
 #[cfg(not(feature = "physical_gpu"))]
-pub(crate) const PERF_ARGS: usize = 99;
+pub(crate) const PERF_ARGS: usize = 98;
 
 /// The performance arg count.
 #[cfg(feature = "physical_gpu")]
-pub(crate) const PERF_ARGS: usize = 97;
+pub(crate) const PERF_ARGS: usize = 96;
 
 lazy_static::lazy_static! {
     /// The chrome args to use test ( basic without anything used for testing ).
@@ -311,7 +311,6 @@ lazy_static::lazy_static! {
                 "--disable-demo-mode",
                 "--disable-dinosaur-easter-egg",
                 "--disable-fetching-hints-at-navigation-start",
-                "--disable-site-isolation-trials",
                 "--disable-threaded-animation",
                 "--disable-sync",
                 "--disable-print-preview",
@@ -441,7 +440,6 @@ lazy_static::lazy_static! {
                 "--disable-demo-mode",
                 "--disable-dinosaur-easter-egg",
                 "--disable-fetching-hints-at-navigation-start",
-                "--disable-site-isolation-trials",
                 "--disable-threaded-animation",
                 "--disable-sync",
                 "--disable-print-preview",
