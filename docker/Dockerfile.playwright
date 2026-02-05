@@ -5,10 +5,10 @@ WORKDIR /app
 RUN apk upgrade --update-cache --available && \
     apk add gcc cmake make g++
 
-COPY ../headless_browser/ ./headless_browser
-COPY ../headless_browser_lib/ ./headless_browser_lib
-COPY ../benches/ ./benches
-COPY ../Cargo.* .
+COPY headless_browser/ ./headless_browser
+COPY headless_browser_lib/ ./headless_browser_lib
+COPY benches/ ./benches
+COPY Cargo.* .
 
 RUN rustup update stable
 RUN RUST_LOG=error cargo install --no-default-features --path headless_browser
@@ -25,7 +25,7 @@ RUN apk upgrade --no-cache --available \
       --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
       font-wqy-zenhei
 
-COPY ../local.conf /etc/fonts/local.conf
+COPY local.conf /etc/fonts/local.conf
 
 # Add Chrome as a user
 RUN mkdir -p /usr/src/app \
@@ -55,7 +55,7 @@ COPY --from=rustbuilder /usr/local/cargo/bin/headless_browser /usr/local/bin/hea
 RUN PLAYWRIGHT_CHROMIUM_PATH=$(find /root/.cache/ms-playwright | grep "chrome-linux/chrome$") && \
     cp $PLAYWRIGHT_CHROMIUM_PATH /chromium_path
 
-COPY ../scripts/docker-entrypoint.sh /
+COPY scripts/docker-entrypoint.sh /
 
 RUN apk add --no-cache tini curl sudo
 RUN chmod +x /docker-entrypoint.sh
